@@ -1,0 +1,65 @@
+Initialize engine version: 5.2.1f1 (44735ea161b3)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 660 (ID=0x11c0)
+    Vendor:   NVIDIA
+    VRAM:     2016 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\mrchargerlover\Documents\Unity Apps\Spherical Adventures\Sphere_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\mrchargerlover\Documents\Unity Apps\Spherical Adventures\Sphere_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\mrchargerlover\Documents\Unity Apps\Spherical Adventures\Sphere_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\mrchargerlover\Documents\Unity Apps\Spherical Adventures\Sphere_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\mrchargerlover\Documents\Unity Apps\Spherical Adventures\Sphere_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\mrchargerlover\Documents\Unity Apps\Spherical Adventures\Sphere_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\mrchargerlover\Documents\Unity Apps\Spherical Adventures\Sphere_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\mrchargerlover\Documents\Unity Apps\Spherical Adventures\Sphere_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\mrchargerlover\Documents\Unity Apps\Spherical Adventures\Sphere_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.146 seconds
+desktop: 1680x1050 59Hz; virtual: 5264x1329 at 0,-15
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\mrchargerlover\Documents\Unity Apps\Spherical Adventures\Sphere_Data\Managed\System.dll (this message is harmless)
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 12b8 -> priority: 1 
+Scene '' (-1) couldn't be loaded because it has not been added to the build settings or the asset bundle has not been loaded.
+To add a scene to the build settings use the menu File->Build Settings...
+ 
+(Filename:  Line: 382)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.099194 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 368.
+Total: 0.343906 ms (FindLiveObjects: 0.023769 ms CreateObjectMapping: 0.014442 ms MarkObjects: 0.300880 ms  DeleteObjects: 0.004212 ms)
+
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.967029 ms
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 504.
+Total: 0.312915 ms (FindLiveObjects: 0.032495 ms CreateObjectMapping: 0.012336 ms MarkObjects: 0.252739 ms  DeleteObjects: 0.014141 ms)
+
+Level3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Platform assembly: C:\Users\mrchargerlover\Documents\Unity Apps\Spherical Adventures\Sphere_Data\Managed\Boo.Lang.dll (this message is harmless)
+Jumping...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Pausing...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.760023 ms
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 358.
+Total: 0.393250 ms (FindLiveObjects: 0.024672 ms CreateObjectMapping: 0.012336 ms MarkObjects: 0.306597 ms  DeleteObjects: 0.049043 ms)
+
+Game is exiting...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
