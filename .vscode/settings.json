@@ -1,9 +1,9 @@
 {
-  "files.exclude": {
-    "**/*.meta": true
-  },
-  "search.exclude": {
-    "**/*.meta": true
-  }
+    "files.exclude": {
+        "**/*.meta": true
+    },
+    "search.exclude": {
+        "**/*.meta": true
+    },
+    "dotnet.defaultSolution": "Spherical_Adventures.slnx"
 }
-

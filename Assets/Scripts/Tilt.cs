@@ -26,9 +26,9 @@ public partial class Tilt : MonoBehaviour
         {
             float _13 = // Move object
             Input.acceleration.x * 10;
-            Vector3 _14 = this.GetComponent<Rigidbody>().velocity;
+            Vector3 _14 = this.GetComponent<Rigidbody>().linearVelocity;
             _14.x = _13;
-            this.GetComponent<Rigidbody>().velocity = _14;
+            this.GetComponent<Rigidbody>().linearVelocity = _14;
         }
     }
 
