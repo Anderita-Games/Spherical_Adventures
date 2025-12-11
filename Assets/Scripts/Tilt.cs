@@ -5,36 +5,72 @@ using System.Collections;
 public partial class Tilt : MonoBehaviour
 {
     public float speed;
+    [Tooltip("Use gyro gravity when available; fall back to accelerometer/input axis.")]
+    public bool useGyroIfAvailable = true;
+    private bool gyroEnabled;
+    private float lastReported;
+    private float logTimer;
     // Move object using accelerometer
     public virtual void Update()
     {
-        Vector3 dir = Vector3.zero;
-        // we assume that device is held parallel to the ground
-        // and Home button is in the right hand
-        // remap device acceleration axis to game coordinates:
-        //  1) XY plane of the device is mapped onto XZ plane
-        //  2) rotated 90 degrees around Y axis
-        dir.x = Input.acceleration.x;
-        // clamp acceleration vector to unit sphere
-        if (dir.sqrMagnitude > 1)
-        {
-            dir.Normalize();
-        }
-        // Make it move 10 meters per second instead of 10 meters per frame...
-        dir = dir * Time.deltaTime;
+        float horizontal = ReadTilt();
+        Vector3 velocity = this.GetComponent<Rigidbody>().linearVelocity;
+        velocity.x = horizontal * 10f; // match previous scaling
+        this.GetComponent<Rigidbody>().linearVelocity = velocity;
 
+        // Occasionally log when we see no movement for easier device debugging
+        logTimer += Time.deltaTime;
+        if (logTimer > 2f)
         {
-            float _13 = // Move object
-            Input.acceleration.x * 10;
-            Vector3 _14 = this.GetComponent<Rigidbody>().linearVelocity;
-            _14.x = _13;
-            this.GetComponent<Rigidbody>().linearVelocity = _14;
+            logTimer = 0f;
+            if (Mathf.Approximately(Mathf.Abs(horizontal), 0f))
+            {
+                Debug.LogWarning("[Tilt] No tilt input detected. accel.x=" + Input.acceleration.x.ToString("F3") +
+                                 ", gyroEnabled=" + gyroEnabled +
+                                 ", gyroGravity.x=" + (Input.gyro.enabled ? Input.gyro.gravity.x.ToString("F3") : "n/a") +
+                                 ", supportsAccel=" + SystemInfo.supportsAccelerometer +
+                                 ", supportsGyro=" + SystemInfo.supportsGyroscope);
+            }
         }
     }
 
     public Tilt()
     {
         this.speed = 10f;
+        this.useGyroIfAvailable = true;
+    }
+
+    private void Awake()
+    {
+        if (this.useGyroIfAvailable && SystemInfo.supportsGyroscope)
+        {
+            Input.gyro.enabled = true;
+            gyroEnabled = true;
+        }
+    }
+
+    private float ReadTilt()
+    {
+        // Prefer gyro gravity (more stable) when enabled
+        float gyroX = (gyroEnabled && Input.gyro.enabled) ? Input.gyro.gravity.x : 0f;
+        float accelX = SystemInfo.supportsAccelerometer ? Input.acceleration.x : 0f;
+
+        float horizontal = gyroEnabled ? gyroX : accelX;
+
+        // Fallback to accel if gyro reports zero but accel has data
+        if (gyroEnabled && Mathf.Approximately(horizontal, 0f))
+        {
+            horizontal = accelX;
+        }
+
+        // Editor fallback: allow keyboard A/D or left/right arrows to simulate tilt
+        if (Application.isEditor && Mathf.Approximately(horizontal, 0f))
+        {
+            horizontal = Input.GetAxis("Horizontal");
+        }
+
+        lastReported = horizontal;
+        return horizontal;
     }
 
 }
