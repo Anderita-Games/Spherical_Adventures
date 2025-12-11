@@ -30,9 +30,9 @@ public partial class Buttons : MonoBehaviour
 
         {
             float _5 = this.speedl;
-            Vector3 _6 = this.GetComponent<Rigidbody>().velocity;
+            Vector3 _6 = this.GetComponent<Rigidbody>().linearVelocity;
             _6.x = _5;
-            this.GetComponent<Rigidbody>().velocity = _6;
+            this.GetComponent<Rigidbody>().linearVelocity = _6;
         }
         Debug.Log("Going left...");
     }
@@ -42,9 +42,9 @@ public partial class Buttons : MonoBehaviour
 
         {
             float _7 = this.speedr;
-            Vector3 _8 = this.GetComponent<Rigidbody>().velocity;
+            Vector3 _8 = this.GetComponent<Rigidbody>().linearVelocity;
             _8.x = _7;
-            this.GetComponent<Rigidbody>().velocity = _8;
+            this.GetComponent<Rigidbody>().linearVelocity = _8;
         }
         Debug.Log("Going right...");
     }
@@ -56,9 +56,9 @@ public partial class Buttons : MonoBehaviour
 
             {
                 int _9 = this.jumpHeight;
-                Vector3 _10 = this.GetComponent<Rigidbody>().velocity;
+                Vector3 _10 = this.GetComponent<Rigidbody>().linearVelocity;
                 _10.y = _9;
-                this.GetComponent<Rigidbody>().velocity = _10;
+                this.GetComponent<Rigidbody>().linearVelocity = _10;
             }
             this.GetComponent<AudioSource>().PlayOneShot(this.Jump);
             this.isFalling = true;
@@ -71,9 +71,9 @@ public partial class Buttons : MonoBehaviour
 
                 {
                     int _11 = this.jumpHeight;
-                    Vector3 _12 = this.GetComponent<Rigidbody>().velocity;
+                    Vector3 _12 = this.GetComponent<Rigidbody>().linearVelocity;
                     _12.y = _11;
-                    this.GetComponent<Rigidbody>().velocity = _12;
+                    this.GetComponent<Rigidbody>().linearVelocity = _12;
                 }
                 this.GetComponent<AudioSource>().PlayOneShot(this.Jump);
                 this.isFalling = true;

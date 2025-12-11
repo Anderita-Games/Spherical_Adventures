@@ -15,9 +15,9 @@ public partial class BallControl : MonoBehaviour
 
             {
                 int _1 = this.jumpHeight;
-                Vector3 _2 = this.GetComponent<Rigidbody>().velocity;
+                Vector3 _2 = this.GetComponent<Rigidbody>().linearVelocity;
                 _2.y = _1;
-                this.GetComponent<Rigidbody>().velocity = _2;
+                this.GetComponent<Rigidbody>().linearVelocity = _2;
             }
             this.GetComponent<AudioSource>().PlayOneShot(this.Jump);
             this.isFalling = true;
@@ -29,9 +29,9 @@ public partial class BallControl : MonoBehaviour
 
                 {
                     int _3 = this.jumpHeight;
-                    Vector3 _4 = this.GetComponent<Rigidbody>().velocity;
+                    Vector3 _4 = this.GetComponent<Rigidbody>().linearVelocity;
                     _4.y = _3;
-                    this.GetComponent<Rigidbody>().velocity = _4;
+                    this.GetComponent<Rigidbody>().linearVelocity = _4;
                 }
                 this.GetComponent<AudioSource>().PlayOneShot(this.Jump);
                 this.isFalling = true;

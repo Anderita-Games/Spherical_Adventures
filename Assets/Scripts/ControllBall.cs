@@ -21,9 +21,9 @@ public partial class ControllBall : MonoBehaviour
 
         // Match max horizontal speed to Tilt by directly setting velocity.x
         float horizontal = Input.GetAxis("Horizontal");
-        Vector3 velocity = this.rb.velocity;
+        Vector3 velocity = this.rb.linearVelocity;
         velocity.x = horizontal * this.maxHorizontalSpeed;
-        this.rb.velocity = velocity;
+        this.rb.linearVelocity = velocity;
     }
 
     public ControllBall()
