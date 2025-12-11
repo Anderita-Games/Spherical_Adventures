@@ -97,3 +97,9 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# platform builds
+ios/
+
+#.My enemy
+.DS_Store
