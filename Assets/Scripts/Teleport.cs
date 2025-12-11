@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 [System.Serializable]
 public partial class Teleport : MonoBehaviour
@@ -9,9 +10,10 @@ public partial class Teleport : MonoBehaviour
     public Transform TeleportEffect2;
     public int maxFallDistance;
     public string lvl1;
+    private InputAction teleportAction;
     public virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (teleportAction != null && teleportAction.WasPressedThisFrame())
         {
             if (GameMaster.teleports <= 0)
             {
@@ -59,6 +61,28 @@ public partial class Teleport : MonoBehaviour
     {
         this.maxFallDistance = -175;
         this.lvl1 = "Level1";
+    }
+
+    private void Awake()
+    {
+        teleportAction = new InputAction("Teleport", InputActionType.Button);
+        teleportAction.AddBinding("<Keyboard>/r");
+        teleportAction.AddBinding("<Gamepad>/select");
+    }
+
+    private void OnEnable()
+    {
+        teleportAction?.Enable();
+    }
+
+    private void OnDisable()
+    {
+        teleportAction?.Disable();
+    }
+
+    private void OnDestroy()
+    {
+        teleportAction?.Dispose();
     }
 
 }

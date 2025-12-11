@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 [System.Serializable]
 public partial class BallControl : MonoBehaviour
@@ -8,9 +9,12 @@ public partial class BallControl : MonoBehaviour
     public AudioClip Jump;
     public Transform target;
     private bool isFalling;
+    private InputAction jumpAction;
+    private InputAction altJumpAction;
     public virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && (this.isFalling == false))
+        bool jumpPressed = jumpAction.WasPressedThisFrame() || altJumpAction.WasPressedThisFrame();
+        if (jumpPressed && (this.isFalling == false))
         {
 
             {
@@ -24,7 +28,7 @@ public partial class BallControl : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space) && (this.isFalling == false))
+            if (jumpPressed && (this.isFalling == false))
             {
 
                 {
@@ -42,6 +46,38 @@ public partial class BallControl : MonoBehaviour
     public virtual void OnCollisionStay()
     {
         this.isFalling = false;
+    }
+
+    private void Awake()
+    {
+        // Separate actions so users can bind differently if desired
+        jumpAction = new InputAction("JumpPrimary", InputActionType.Button);
+        jumpAction.AddBinding("<Keyboard>/space");
+        jumpAction.AddBinding("<Keyboard>/w");
+        jumpAction.AddBinding("<Gamepad>/buttonSouth");
+
+        altJumpAction = new InputAction("JumpAlternate", InputActionType.Button);
+        altJumpAction.AddBinding("<Keyboard>/upArrow");
+        altJumpAction.AddBinding("<Gamepad>/leftShoulder");
+
+    }
+
+    private void OnEnable()
+    {
+        jumpAction?.Enable();
+        altJumpAction?.Enable();
+    }
+
+    private void OnDisable()
+    {
+        jumpAction?.Disable();
+        altJumpAction?.Disable();
+    }
+
+    private void OnDestroy()
+    {
+        jumpAction?.Dispose();
+        altJumpAction?.Dispose();
     }
 
     public BallControl()
