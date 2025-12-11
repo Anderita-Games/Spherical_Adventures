@@ -5,23 +5,25 @@ using UnityEngine.InputSystem;
 [System.Serializable]
 public partial class Tilt : MonoBehaviour
 {
-    public float speed;
+    public float speed = 10f;
     [Tooltip("Use gyro gravity when available; fall back to accelerometer/input axis.")]
     public bool useGyroIfAvailable = true;
     private bool gyroEnabled;
     private float lastReported;
     private float logTimer;
     private InputAction horizontalAction;
+    private Rigidbody rb;
     // Move object using accelerometer
-    public virtual void Update()
+    // Physics updates must run in FixedUpdate so velocity changes are applied
+    public virtual void FixedUpdate()
     {
         float horizontal = ReadTilt();
-        Vector3 velocity = this.GetComponent<Rigidbody>().linearVelocity;
-        velocity.x = horizontal * 10f; // match previous scaling
-        this.GetComponent<Rigidbody>().linearVelocity = velocity;
+        Vector3 velocity = rb.linearVelocity;
+        velocity.x = horizontal * speed;
+        rb.linearVelocity = velocity;
 
         // Occasionally log when we see no movement for easier device debugging
-        logTimer += Time.deltaTime;
+        logTimer += Time.fixedDeltaTime;
         if (logTimer > 2f)
         {
             logTimer = 0f;
@@ -41,14 +43,10 @@ public partial class Tilt : MonoBehaviour
         }
     }
 
-    public Tilt()
-    {
-        this.speed = 10f;
-        this.useGyroIfAvailable = true;
-    }
-
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
+
         if (this.useGyroIfAvailable && SystemInfo.supportsGyroscope)
         {
             var gravity = GravitySensor.current;
